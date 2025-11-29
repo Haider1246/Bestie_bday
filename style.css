@@ -1,0 +1,98 @@
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{display:flex;justify-content:center;align-items:center;min-height:100vh;animation:fadePage 1s ease-in-out;}
+@keyframes fadePage{from{opacity:0;}to{opacity:1;}}
+
+body::before{
+  content:"";
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background-image:
+    radial-gradient(circle at 10% 20%,rgba(255,182,193,0.3)2px,transparent 3px),
+    radial-gradient(circle at 80% 80%,rgba(255,192,203,0.4)2px,transparent 3px),
+    radial-gradient(circle at 30% 60%,rgba(255,228,225,0.4)3px,transparent 3px);
+  background-size:200px 200px;
+  animation:moveSparkles 20s linear infinite;
+  z-index:-1;
+}
+@keyframes moveSparkles{
+  from{background-position:0 0,100px 200px,200px 100px;}
+  to{background-position:400px 400px,300px 600px,500px 300px;}
+}
+
+button{
+  margin-top:15px;
+  padding:10px 25px;
+  background:#ff6699;
+  color:white;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  transition:.3s;
+  box-shadow:0 0 15px #ff99cc;
+}
+button:hover{transform:scale(1.1);box-shadow:0 0 25px #ff66b3;}
+
+/* * *** NEW STYLES FOR RESTART BUTTON (wish5.html) ***
+ * The button tag selector handles the styling, but we need to ensure 
+ * the restart button is positioned correctly below the card.
+*/
+.page5 .restart-btn {
+    /* Uses the existing 'button' styles but adds specific top margin 
+       to ensure it sits correctly below the centered card */
+    margin-top: 30px; 
+}
+
+/* Inside style.css */
+
+/* ... (previous styles) ... */
+
+/* Page 1 */
+.page1{background:linear-gradient(135deg,#ffe6e6,#fff0f5);}
+.container{text-align:center;}
+.title{
+    font-size:2.5em;
+    color:#ff6699;
+    animation:fadeIn 2s;
+    white-space: nowrap; /* <--- THIS IS CRITICAL */
+}
+.subtitle{color:#666;margin-bottom:15px;}
+/* ... (rest of the styles) ... */
+
+input{padding:10px;width:250px;border:none;border-radius:10px;text-align:center;outline:none;}
+
+/* Page 2 */
+.page2{background:linear-gradient(135deg,#fff0f5,#ffe6e6);text-align:center;}
+.page2 span{color:#ff3385;font-weight:bold;}
+
+/* Page 3 */
+.page3{background:linear-gradient(135deg,#fff0f5,#fbefff);flex-direction:column;text-align:center;}
+.hint{color:#666;}
+.board{display:grid;grid-template-columns:repeat(5,60px);gap:10px;margin:20px auto;}
+.cell{width:60px;height:60px;display:flex;align-items:center;justify-content:center;font-size:2em;border-radius:10px;background:white;box-shadow:0 0 10px #ffb6c1;cursor:pointer;transition:.3s;}
+.cell:hover{transform:scale(1.1);}
+
+/* Page 4 */
+.page4{background:linear-gradient(135deg,#fff0f5,#ffe6e6);text-align:center;}
+.cake{font-size:3em;text-shadow:0 0 20px #ff99cc,0 0 40px #ffcce5;animation:bounce 2s infinite;}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+
+/* Page 5 */
+.page5{
+    background:linear-gradient(135deg,#ffe6e6,#fff0f5);
+    /* Set flex-direction to column to stack the card and button vertically */
+    flex-direction: column; 
+}
+.card{width:300px;height:200px;perspective:1000px;position:relative;cursor:pointer;box-shadow:0 0 20px rgba(255,182,193,0.6);}
+.card .front,.card .inside{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:15px;text-align:center;padding:20px;transition:transform 1s;}
+.front{background:#ff99cc;color:white;display:flex;justify-content:center;align-items:center;}
+.inside{background:white;transform:rotateY(180deg);}
+.card.open .front{transform:rotateY(180deg);}
+.card.open .inside{transform:rotateY(0deg);}
+.card.open .inside{box-shadow:0 0 30px rgba(255,105,180,0.5);}
+
+/* Confetti */
+.confetti{position:fixed;top:-10px;width:10px;height:10px;border-radius:50%;animation:fall linear forwards;z-index:9999;}
+@keyframes fall{to{transform:translateY(100vh) rotate(720deg);opacity:0;}}
+

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome | Haider's Surprise</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page1">
+  <div class="container">
+  <h1 class="title">🎂<span>Hello Dear Bawlii</span>🎂</h1> 
+    <p class="subtitle">I know today is special...</p>
+    <input type="text" id="nameInput" placeholder="Enter your name 💖">
+    <button onclick="goNext()">Next ➤</button>
+  </div>
+  <script>
+    function goNext() {
+      const name = document.getElementById('nameInput').value.trim();
+      
+      // **START: CHANGE 1 - Name Enforcement**
+      if (name === "") {
+        alert("Please enter a name to continue!");
+        return; // Stop the function if the name is empty
+      }
+      // **END: CHANGE 1**
+
+      localStorage.setItem('username', name);
+      window.location.href = 'wish2.html';
+    }
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishing Card 💌</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page5">
+  <div class="card" onclick="this.classList.toggle('open')">
+    <div class="front">💌 Click to Open</div>
+    <div class="inside">
+      <h2>Dear Bestie 💖</h2>
+      <p>You are more special than any gift,<br>
+      more precious than any wish,<br>
+      and forever my favorite person 🎂💫</p>
+      <h3>— From Haider 💜</h3>
+    </div>
+  </div>
+    
+        <button onclick="restartSite()">Restart</button>
+    
+  <script>
+    function restartSite() {
+        // Optional: clear the stored name so the next user starts fresh
+        localStorage.removeItem('username'); 
+        // Directs user back to the first page
+        window.location.href = 'index.html'; 
+    }
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emoji Match Game 💖</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      color: #fff;
+      font-size: 2em;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .game-board {
+      display: grid;
+      grid-template-columns: repeat(4, 80px);
+      grid-gap: 15px;
+      justify-content: center;
+    }
+
+    .card {
+      width: 80px;
+      height: 80px;
+      background-color: #fff;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2em;
+      cursor: pointer;
+      transition: transform 0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .card.flipped {
+      background-color: #ffe6eb;
+      transform: rotateY(180deg);
+    }
+
+    .card.matched {
+      background-color: #d4f6d4;
+      color: #333;
+      cursor: default;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 25px;
+      background-color: #ff7eb9;
+      color: white;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #ff5c9a;
+    }
+  </style>
+</head>
+<body>
+  <h1>💞 Emoji Match Game 💞</h1>
+  <div class="game-board" id="gameBoard"></div>
+  <button onclick="restartGame()">Restart 🔁</button>
+
+  <script>
+const emojis = ['😍', '🥰', '😘', '😎', '🤩', '😇', '😻', '💖'];
+let cards = [...emojis, ...emojis].sort(() => Math.random() - 0.5);
+
+const gameBoard = document.getElementById("gameBoard");
+let firstCard = null;
+let lockBoard = false;
+let matchedCount = 0;
+
+cards.forEach((emoji) => {
+  const card = document.createElement("div");
+  card.classList.add("card");
+  card.textContent = "?";
+  card.dataset.emoji = emoji;
+
+  card.addEventListener("click", () => {
+    if (lockBoard || card.classList.contains("matched") || card === firstCard) return;
+
+    card.textContent = card.dataset.emoji;
+
+    if (!firstCard) {
+      firstCard = card;
+      return;
+    }
+
+    // Match check
+    if (firstCard.dataset.emoji === card.dataset.emoji) {
+      firstCard.classList.add("matched");
+      card.classList.add("matched");
+      matchedCount += 2;
+      firstCard = null;
+
+      // ✅ Game Complete Condition
+      if (matchedCount === cards.length) {
+        setTimeout(() => {
+          alert("🎉 You Matched All Emojis! 💕");
+          window.location.href = "wish4.html";
+        }, 500);
+      }
+    } else {
+      lockBoard = true;
+      setTimeout(() => {
+        firstCard.textContent = "?";
+        card.textContent = "?";
+        firstCard = null;
+        lockBoard = false;
+      }, 800);
+    }
+  });
+
+  gameBoard.appendChild(card);
+});
+</script>
+</body>
+</html>
