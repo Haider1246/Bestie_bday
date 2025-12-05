@@ -91,7 +91,17 @@ input{padding:10px;width:250px;border:none;border-radius:10px;text-align:center;
 .card.open .front{transform:rotateY(180deg);}
 .card.open .inside{transform:rotateY(0deg);}
 .card.open .inside{box-shadow:0 0 30px rgba(255,105,180,0.5);}
-
+/* ADD THIS NEW RULE to the bottom of your style.css file */
+.card .inside h3 {
+    margin-top: 10px; /* Reduced space above the signature */
+    margin-bottom: 0; /* Ensures no extra space below the signature */
+    font-size: 1em; /* Makes the font a bit smaller to fit */
+    position: absolute; /* Allows precise placement */
+    bottom: 10px; /* Positions it near the bottom edge of the card */
+    left: 0;
+    right: 0;
+    width: 100%;
+}
 /* Confetti */
 .confetti{position:fixed;top:-10px;width:10px;height:10px;border-radius:50%;animation:fall linear forwards;z-index:9999;}
 @keyframes fall{to{transform:translateY(100vh) rotate(720deg);opacity:0;}}
